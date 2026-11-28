@@ -31,3 +31,15 @@ def get_sorted_tasks(subject="All"):
     if subject != "All":
         task_list = [t for t in task_list if t["subject"] == subject]
     return sorted(task_list, key=lambda t: (t["done"], PRIORITY_ORDER[t["priority"]], t["deadline"]))
+
+def mark_done(task_id):
+    task_list = load_tasks()
+    for task in task_list:
+        if task["id"] == task_id:
+            task["done"] = True
+    save_tasks(task_list)
+
+
+def delete_task(task_id):
+    task_list = [t for t in load_tasks() if t["id"] != task_id]
+    save_tasks(task_list)
