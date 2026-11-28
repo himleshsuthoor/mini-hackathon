@@ -22,3 +22,20 @@ if submitted:
     else:
         tasks.add_task(title.strip(), subject, deadline, priority)
         st.success("Task added.")
+
+st.subheader("Your tasks")
+
+selected_subject = st.selectbox("Filter by subject", ["All"] + SUBJECTS)
+
+task_list = tasks.get_sorted_tasks(selected_subject)
+
+if len(task_list) == 0:
+    st.info("No tasks yet. Add your first task above.")
+
+for task in task_list:
+    col1, col2, col3 = st.columns([6, 1, 1])
+
+    if task["done"]:
+        col1.write(f"~~{task['title']}~~ ({task['subject']}, due {task['deadline']})")
+    else:
+        col1.write(f"**{task['priority']}**: {task['title']} ({task['subject']}, due {task['deadline']})")
