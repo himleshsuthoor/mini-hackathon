@@ -25,6 +25,12 @@ if submitted:
 
 st.subheader("Your tasks")
 
+summary = tasks.progress_summary()
+
+st.progress(summary["percent"] / 100)
+
+st.write(f"{summary['done']} of {summary['total']} tasks completed ({summary['percent']}%)")
+
 selected_subject = st.selectbox("Filter by subject", ["All"] + SUBJECTS)
 
 task_list = tasks.get_sorted_tasks(selected_subject)
