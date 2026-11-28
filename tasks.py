@@ -8,8 +8,11 @@ PRIORITY_ORDER = {"High": 0, "Medium": 1, "Low": 2}
 def load_tasks():
     if not os.path.exists(TASKS_FILE):
         return []
-    with open(TASKS_FILE, "r") as file:
-        return json.load(file)
+    try:
+        with open(TASKS_FILE, "r") as file:
+            return json.load(file)
+    except json.JSONDecodeError:
+        return []
 
 
 def save_tasks(task_list):
