@@ -25,3 +25,9 @@ def add_task(title, subject, deadline, priority):
     task_list.append(task)
     save_tasks(task_list)
     return task
+
+def get_sorted_tasks(subject="All"):
+    task_list = load_tasks()
+    if subject != "All":
+        task_list = [t for t in task_list if t["subject"] == subject]
+    return sorted(task_list, key=lambda t: (t["done"], PRIORITY_ORDER[t["priority"]], t["deadline"]))
