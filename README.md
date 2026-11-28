@@ -24,3 +24,13 @@ StudyBuddy is a simple web app where a student adds academic tasks with a subjec
 
 Deadline reminders, user accounts with login, a calendar view, overdue highlighting, per-user storage.
 
+## Tech stack
+Python 3, Streamlit for the interface, a JSON file (tasks.json) for storage, pytest for tests. Deployed on Streamlit Community Cloud.
+
+## How to run locally
+```bash
+git clone  https://github.com/himleshsuthoor/mini-hackathon.git
+cd mini-hackathon
+pip install -r requirements.txt
+streamlit run app.py
+```
