@@ -43,3 +43,11 @@ def mark_done(task_id):
 def delete_task(task_id):
     task_list = [t for t in load_tasks() if t["id"] != task_id]
     save_tasks(task_list)
+
+
+def progress_summary():
+    task_list = load_tasks()
+    total = len(task_list)
+    done = len([t for t in task_list if t["done"]])
+    percent = round(done / total * 100) if total > 0 else 0
+    return {"total": total, "done": done, "pending": total - done, "percent": percent}
